@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <properties>
+        <property name="rpPattern">[%d{HH:mm:ss}] %-5p (%F:%L) - %m%n</property>
+        <property name="consolePattern">[%d{HH:mm:ss}] %highlight{%-5p} (%F:%L) - %m%n</property>
+    </properties>
+
+    <appenders>
+        <ReportPortalLog4j2Appender name="ReportPortalAppender">
+            <PatternLayout pattern="${rpPattern}" />
+        </ReportPortalLog4j2Appender>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${consolePattern}"/>
+        </Console>
+        <RollingFile name="LogFileAppender"
+                     fileName="target/logs/hal.log"
+                     filePattern="target/logs/%d{yyyy-MM-dd-HH-mm}_hal.log.gz"
+                     ignoreExceptions="false">
+            <PatternLayout pattern="${rpPattern}"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <root level="all">
+            <appender-ref ref="ReportPortalAppender"/>
+            <appender-ref ref="ConsoleAppender" level="info" />
+            <appender-ref ref="LogFileAppender"/>
+        </root>
+
+        <logger name="com.spotify.docker.client.LoggingPullHandler" level="WARN" additivity="false">
+            <appender-ref ref="ConsoleAppender"/>
+        </logger>
+    </loggers>
+</configuration>
