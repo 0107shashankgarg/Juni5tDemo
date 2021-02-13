@@ -11,6 +11,7 @@ public class HumanizeNameWithTestCaseId extends DisplayNameGenerator.Standard{
     @Override
     public String generateDisplayNameForMethod(Class<?> testClass, Method testMethod) {
 
+        //      System.out.println("generateDisplayNameForMethod");
         String testCaseName = humanizeTestCaseName(testMethod.getName());
         TestCaseId testCaseId = testMethod.getAnnotation(TestCaseId.class);
         //Format method name with testcaseId
@@ -22,12 +23,14 @@ public class HumanizeNameWithTestCaseId extends DisplayNameGenerator.Standard{
 
     @Override
     public String generateDisplayNameForClass(Class<?> testClass) {
+        //  System.out.println("generateDisplayNameForClass");
         return humanizeTestCaseName(super.generateDisplayNameForClass(testClass));
 
     }
 
     @Override
     public String generateDisplayNameForNestedClass(Class<?> nestedClass) {
+        //  System.out.println("generateDisplayNameForNestedClass");
         return humanizeTestCaseName(super.generateDisplayNameForClass(nestedClass));
 
     }

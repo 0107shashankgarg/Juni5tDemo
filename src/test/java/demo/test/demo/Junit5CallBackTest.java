@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 
+
 @ExtendWith({TestExtension.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class Junit5CallBackTest {
@@ -40,6 +41,12 @@ public class Junit5CallBackTest {
     @Test
     void simpleTest2() {
         System.out.println("test 2 ");
+    }
+
+
+    @Test
+    void exceptionTest() throws Exception {
+        throw new Exception("Just a custom Exception message");
     }
 
 

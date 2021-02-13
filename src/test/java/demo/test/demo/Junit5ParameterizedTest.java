@@ -1,7 +1,6 @@
 package demo.test.demo;
 
 import demo.constants.DaysOfWeek;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
@@ -14,25 +13,32 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 public class Junit5ParameterizedTest {
 
 
-
+    /**
+     * How use a simple array as parameter
+     */
 
     @ParameterizedTest
-    @ValueSource(strings = { "shahsank","Anton"})
-
+    @ValueSource(strings = {"String1", "String2"})
     void simpleParameterizedFirstTest(String name) {
 
         System.out.println("The test is dedicated to "+ name);
 
     }
 
-
+    /**
+     * How use a simple Enum as source  parameter
+     */
     @ParameterizedTest
     @EnumSource(DaysOfWeek.class)
     void simpleEnumParameterizedFirstTest(DaysOfWeek name) {
 
-        System.out.println("Today is"+ name);
+        System.out.println(name);
 
     }
+
+    /**
+     * How use a streaming method as Parameter
+     */
 
     @ParameterizedTest
     @MethodSource("stringIntAndListProvider")
@@ -49,7 +55,9 @@ public class Junit5ParameterizedTest {
         );
     }
 
-
+    /**
+     * How use a streaming method as Parameter
+     */
     @ParameterizedTest
     @CsvFileSource(resources = "/test.csv")
     void testWithCsvFileSourceFromClasspath(String country, String capitol) {
@@ -57,14 +65,13 @@ public class Junit5ParameterizedTest {
 
     }
 
-
-    @Test
-    void testWithCsvFileSourceFromClasspath() {
-        for (int i = 1; i < 100; i++) {
-
-            System.out.println((i % 15 == 0) ? "fizbuzz" : i % 3 == 0 ? "fiz" : i % 5 == 0 ? "buz" : String.valueOf(i));
-        }
+    @ParameterizedTest
+    @CsvFileSource(resources = "/test.csv", numLinesToSkip = 2)
+    void testWithCsvFileSourceFromClasspathAndSKip(String country, String capitol) {
+        System.out.println(country + " Capital is " + capitol);
 
     }
+
+
 
 }

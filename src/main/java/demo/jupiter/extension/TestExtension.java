@@ -1,13 +1,10 @@
 package demo.jupiter.extension;
 
 
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.*;
 
 
-public class TestExtension implements BeforeEachCallback, AfterEachCallback, BeforeTestExecutionCallback {
+public class TestExtension implements BeforeEachCallback, AfterEachCallback, BeforeTestExecutionCallback, TestExecutionExceptionHandler {
 
 
     @Override
@@ -23,5 +20,11 @@ public class TestExtension implements BeforeEachCallback, AfterEachCallback, Bef
     @Override
     public void beforeTestExecution(ExtensionContext extensionContext) throws Exception {
         System.out.println("beforeTestExecution");
+    }
+
+    @Override
+    public void handleTestExecutionException(ExtensionContext extensionContext, Throwable throwable) {
+
+        System.out.println(throwable.getMessage());
     }
 }

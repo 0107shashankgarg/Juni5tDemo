@@ -9,13 +9,17 @@ import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.condition.OS.MAC;
 import static org.junit.jupiter.api.condition.OS.WINDOWS;
 
 
 @DisplayNameGeneration(HumanizeNameWithTestCaseId.class)
 public class Junit5ExtraFeaturesTest {
+
+
+    /**
+     * Use of DisplayName to make a more meaning full name is logs and and reports
+     */
 
 
     @DisplayName("This test is named as per Standard")
@@ -26,21 +30,18 @@ public class Junit5ExtraFeaturesTest {
 
     }
 
+    /**
+     * Use of custom extension for formatting for a class and method
+     */
 
     @Test
     void simpleHumanizedNameTest() {
-        System.out.println("The test is dedicated to customization of display name");
+        System.out.println("The test is dedicated to Humanize of display name");
     }
 
-    @Test
-    void simpleAssertALlTest()
-    {
-        assertAll("Asset All Example",
-                () -> assertTrue(true, "This is the first assert"),
-                () -> assertTrue(true, "This is the second assert"),
-                () -> assertEquals(1 , 2, "This is the first integer equal assert")
-        );
-    }
+    /**
+     * Use of repeated test and few condition test which can be useful"
+     */
 
     @RepeatedTest(2)
     @EnabledOnOs(MAC)
@@ -50,16 +51,16 @@ public class Junit5ExtraFeaturesTest {
 
 
     @Test
-    @EnabledOnOs({ WINDOWS})
+    @EnabledOnOs(WINDOWS)
     void onWindowsOnly() {
-        System.out.println("This is MAC and LINUX only ");
+        System.out.println("This test is for MAC and LINUX only ");
     }
 
 
     @Test
     @DisabledOnOs(WINDOWS)
-    void notOnWindows() {
-        System.out.println("This is not WINDOWS");
+    void forWindowsOnly() {
+        System.out.println("This is not WINDOWS System");
     }
 
 
@@ -69,6 +70,11 @@ public class Junit5ExtraFeaturesTest {
         System.out.println("onlyOn64BitArchitectures");
     }
 
+    @Test
+    @EnabledIfSystemProperty(named = "os.arch", matches = ".*32.*")
+    void onlyOn32BitArchitectures() {
+        System.out.println("onlyOn32BitArchitectures");
+    }
 
 
     @Order(1)
@@ -83,7 +89,9 @@ public class Junit5ExtraFeaturesTest {
     }
 
 
- //Cuatom Anotation
+    /**
+     * Use of combined custom annotation"
+     */
 
    @Release
    void customAnnotationTest() {
