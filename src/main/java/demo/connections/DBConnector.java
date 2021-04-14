@@ -10,6 +10,7 @@ public class DBConnector {
     private static Properties prop = new Properties();
 
     public static Connection createConnection(String url, String username, String password) throws SQLException {
+
         return DriverManager.getConnection(url, username, password);
     }
 

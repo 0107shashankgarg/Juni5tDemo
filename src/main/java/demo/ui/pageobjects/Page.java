@@ -1,11 +1,9 @@
-package demo.pageobjects;
-
-
+package demo.ui.pageobjects;
 
 
 import static com.codeborne.selenide.Selenide.page;
 
-public class BaseApp {
+public class Page {
 
 
     public static LandingPage landingPage() {
@@ -13,5 +11,8 @@ public class BaseApp {
     }
 
 
-}
+    public void LaenterUserName(String Username) {
 
+    }
+
+}

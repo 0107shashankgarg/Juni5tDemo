@@ -27,15 +27,10 @@ class Search extends UIBaseTest {
     @TestCaseId(101)
     @Test
     void userIsAbleToLogin() {
-        BaseApp.searchPage().open().enterSearchTerm();
+        BaseApp.landingPage().open();
     }
 
 
-    @TestCaseId(1002)
-    @Test
-    void noTestCAseIdProvided() {
-
-    }
 }
 
 

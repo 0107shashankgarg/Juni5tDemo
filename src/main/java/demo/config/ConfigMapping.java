@@ -50,7 +50,8 @@ public interface ConfigMapping extends Config {
     @DefaultValue("shashank,shashank")
     String user();
 
-
+    @DefaultValue("isSuppressKnownIssues")
+    boolean isSuppressKnownIssues();
 
 
     //Test Rail Properties
